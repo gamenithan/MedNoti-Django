@@ -1,0 +1,84 @@
+{% extends "base2.html" %}
+{% block content %}
+{% load static %}
+    <body>
+        <mobile>
+            <div class='mobile-container'>
+            	<div class="container-fluid">
+            		<div class="row">
+            			<div class="col-sm-12" style="background-color:#12D3CF;height: 60px;width: 414px;">
+                            <a onclick="goBack()"><img src="{% static 'back.png' %}" style="width:25px;height:25px;margin-top: -7px;"></a>
+                            <label style="color:white;font-size: 20px;margin-left: 100px;padding-top: 15px;">แก้ไขโปรไฟล์</label>
+                            <a href="{% url 'menu' %}"><img src="{% static 'menu.png' %}" style="width:28px;height:28px;margin-top: -5px;margin-left: 90px;"></a>
+            			</div>
+            		</div>
+            		<br>
+                    <form method="POST" action="{% url 'edit_other' nei.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+            		<div class="row row-cols-2">
+            			<div class="col-sm-6" style="padding-left: 35px;">
+                            <div class="form-group">
+                                <label style="color: #12D3CF;">Firstname</label>
+                            <br>
+            				<input type="text" style="border-radius: 40px;border: 1px solid #707070; width: 170px;height: 45px;text-align: center;" placeholder="Firstname" value="{{ nei.first_name }}" name='first_name'>
+                            <img src="{% static 'user.png' %}" style="width: 45px;height: 45px;margin-top: -45px;margin-left: -2px;"></div>
+            			</div>
+            			<div class="col-sm-6">
+                            <div class="form-group">
+            				<label style="color: #12D3CF;">Lastname</label>
+                            <br>
+                            <input type="text" style="border-radius: 40px;border: 1px solid #707070; width: 170px;height: 45px;text-align: left;padding-left: 20px;" placeholder="Lastname" value="{{ nei.last_name }}" name='last_name'></div>
+            			</div>
+                    </div>
+                    <br>
+                    <div class="row row-cols-2">
+                        <div class="col-sm-6" style="padding-left: 35px;">
+                            <div class="form-group" style="margin-top: -25px;">
+                                <label style="color: #12D3CF;">Age</label>
+                            <br>
+                            <input type="text" style="border-radius: 40px;border: 1px solid #707070; width: 140px;height: 45px;text-align: center;" value="{{ nei.age }}" name='age'>
+                            <img src="{% static 'user1.png' %}" style="width: 45px;height: 45px;margin-top: -45px;margin-left: -2px;"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group" style="margin-top: -25px;border-color: #707070">
+                            <label style="color: #12D3CF;">Sex</label>
+                            <br>
+                            <select id="sex" name="sex" style="width: 150px;height: 45px;border-radius: 40px;text-align: left;padding-left: 15px;">
+                                <option value="{{ nei.sex }}">Please Choose
+                                </option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select></div>
+                        </div>
+                    </div>
+                    <div class="row">
+            			<div class="col-sm-12" style="padding-left: 35px;margin-top: 10px;">
+            				<label style="color: #12D3CF;">Congenital disease</label>
+                            <br>
+                            <input type="text" style="border-radius: 40px;border: 1px solid #707070;height: 45px;width:95%;text-align: left;padding-left: 60px;" placeholder="ภูมิแพ้" value="{{ nei.disease }}" name='disease'>
+                            <img src="{% static 'drugs.png' %}" style="width: 45px;height: 45px;margin-top: -4px;margin-left: -353px;">
+            			</div>
+                        <div class="col-sm-12" style="padding-left: 35px;margin-top: 10px;">
+            				<label style="color: #12D3CF;">Food allergy / Drug allergy</label>
+                            <br>
+                            <input type="text" style="border-radius: 40px;border: 1px solid #707070;height: 45px;width:95%;text-align: left;padding-left: 60px;" placeholder="ข้าวเกรียบ" value="{{ nei.allergy }}" name='allergy'>
+                            <img src="{% static 'fork.png' %}" style="width: 45px;height: 45px;margin-top: -4px;margin-left: -353px;">
+            			</div>
+                        <br>
+            			<div class="col-sm-12" style="padding-left: 40px;margin-top: 10px;">
+                            
+            				<div class="input-group mb-3" style="margin-top: 5px;">
+                                <label for="Inputimage" >Choose image</label>
+                                <input type="file" id="Inputimage" class="form-control-file" style="width: 300px;margin: 0 0 30 5px;" name='image_url' required>
+                            </div>
+            			</div>
+            			<div class="col-sm-12">
+            				<button type="submit" class="btn" style="width: 100%;height: 50px;margin-top: -10px;border-radius: 40px;border:0.2px solid #070707;color:white;background-color:#12D3CF;font-size: 18px ">Submit</button>
+            			</div>
+            		</div>
+                    </form>
+                </div>
+        </mobile>
+    </body>
+
+{% endblock %}

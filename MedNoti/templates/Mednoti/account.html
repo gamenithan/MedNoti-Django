@@ -1,0 +1,104 @@
+{% extends "base2.html" %}
+{% block content %}
+{% load static %}
+    <body>
+        <mobile>
+            <div class='mobile-container'>
+                <nav id="nav-bar">
+                    <a onclick="goBack()"><img src="{% static 'back.png' %}" class="back-main"></a>
+                    
+                </nav>
+                <div class="container">
+                    <div class="row">
+                        <a href="{% url 'home' %}"><img src="{% static 'home-run.png' %}" class="home-img"></a>
+                    </div>
+                    <a href="{% url 'profile' %}">
+                    <div class="row row-one">
+                        <div class="col-3">
+                            <div id="user-circle"><img src="{{request.user.profile.image_url.url}}" id="user-circle"></div>
+                        </div>
+                        <div class="col-7 middle-text text-body">
+                            <h5>{{user.username}}</h5>
+                        </div>
+                        <div class="col middle-img">
+                            <img src="{% static 'back_right70.png' %}" class="back-menu">
+                        </div>
+                    </div>
+                    </a>
+                    <div id="hr"></div>
+                    <a href="{% url 'other' %}">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="{% static 'group.png' %}" class="img-account">
+                        </div>
+                        <div class="col-7 middle-text-h6 text-body">
+                            <p>ข้อมูลบุคคลอื่น</p>
+                        </div>
+                        <div class="col middle-img">
+                            <img src="{% static 'back_right70.png' %}" class="back-menu">
+                        </div>
+                    </div>
+                    </a>
+                    <div id="hr"></div>
+                    <a href="{% url 'event' %}">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="{% static 'calendar.png' %}" class="img-account">
+                        </div>
+                        <div class="col-7 middle-text-h6 text-body">
+                            <p>กิจกรรม</p>
+                        </div>
+                        <div class="col middle-img">
+                            <img src="{% static 'back_right70.png' %}" class="back-menu">
+                        </div>
+                    </div>
+                    </a>
+                    <div id="hr"></div>
+                    <a href="{% url 'history' %}">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="{% static 'clock.png' %}" class="img-account">
+                        </div>
+                        <div class="col-7 middle-text-h6 text-body">
+                            <p>ประวัติการรับประทานยา</p>
+                        </div>
+                        <div class="col middle-img">
+                            <img src="{% static 'back_right70.png' %}" class="back-menu">
+                        </div>
+                    </div>
+                    </a>
+                    <div id="hr"></div>
+                    <a href="{% url 'report' %}">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="{% static 'report.png' %}" class="img-account">
+                        </div>
+                        <div class="col-7 middle-text-h6 text-body">
+                            <p>การประเมินผล</p>
+                        </div>
+                        <div class="col middle-img">
+                            <img src="{% static 'back_right70.png' %}" class="back-menu">
+                        </div>
+                    </div>
+                    </a>
+                    <div id="hr"></div>
+                    <a href="{% url 'setting' %}">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="{% static 'settings.png' %}" class="img-account">
+                        </div>
+                        <div class="col-7 middle-text-h6 text-body">
+                            <p>การตั้งค่า</p>
+                        </div>
+                        <div class="col middle-img">
+                            <img src="{% static 'back_right70.png' %}" class="back-menu">
+                        </div>
+                    </div>
+                    <a href="{% url 'report' %}">
+                    <div id="hr"></div>
+                </div>
+            </div>
+        </mobile>
+    </body>
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base2.html" %}
+{% block content %}
+{% load static %}
+    <body>
+        <mobile>
+            <div class='mobile-container'>
+                <nav id="nav-bar">
+                    <img  class="back-main">
+                    <h3 id="home-text">หน้าหลัก</h3>
+                    <a href="{% url 'menu' %}"><img src="{% static 'menu.png' %}" class="menu-main"></a>
+                </nav>
+
+                <div class="container">
+                    <div class="row">
+                        <a class="btn" id="btn-add" href="{% url 'adddrug' %}"><p class="pluss">+</p></a>
+                    </div>
+                    {% for med in meds %}
+                    <div class="row">
+                        <div id="drugs" class="card mb-6">
+                            <div class="card-header bg-transparent border-dark">
+                                <div class="row">
+                                    <p id="name-drug" class="card-title col-4">{{med.name}}</p>
+                                    <div class="nav-item dropdown" id="menu">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{% url 'home2' med.id %}">ดูข้อมูล</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="{% url 'editdrug' med.id %}">แก้ไขข้อมูล</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="{% url 'deletemed' med.id %}" onclick="">ลบข้อมูล</a>
+                                        </div>
+                                    </div>
+                                    <lable id="balance">คงเหลือ {{med.unit_eat}} เม็ด</lable>
+                                </div>
+                            </div>
+                            <div class="card-body text-success">
+                                <div class="row" id="time">
+                                {% if med.freq1 != '' %}
+                                    <p class="about-drug col-4">{{med.freq1}}</p>
+                                    <p class="about-drug col-5">{{med.when}}</p>
+                                {% endif %}
+                                {% if med.freq2 != '' %}
+                                    <p class="about-drug col-4">{{med.freq2}}</p>
+                                    <p class="about-drug col-5">{{med.when}}</p>
+                                {% endif %}
+                                {% if med.freq3 != '' %}
+                                    <p class="about-drug col-4">{{med.freq3}}</p>
+                                    <p class="about-drug col-5">{{med.when}}</p>
+                                {% endif %}
+                                {% if med.freq4 != '' %}    
+                                    <p class="about-drug col-4">{{med.freq4}}</p>
+                                    <p class="about-drug col-5">{{med.when}}</p>                               
+                                {% endif %}
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-dark">
+                                <div class="custom-control custom-switch">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                {% endfor %}
+                </div>
+            </div>
+        </mobile>
+    </body>
+{% endblock %}

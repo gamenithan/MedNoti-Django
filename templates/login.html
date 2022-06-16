@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+    <body>
+        <mobile>
+            <div class='mobile-container'>
+                <div class="box"></div>
+                <div class="container">
+                    <img src="{% static 'logo.png' %}" id="logo">
+                    <div class="row">
+                        <div class="col-11 box-wite-login">
+                            <form method="POST" action="{% url 'login' %}">
+                            {% csrf_token %}
+                                <h3 class="signin-text">SIGN IN</h3>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="Inputuser" placeholder="Username" name="username" value="{{username}}" required>
+                                        <img class="user-login-img" src="{% static 'user.png' %}">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="Inputpassword" placeholder="Password" name="password" value="{{password}}" required>
+                                        <img class="password-login-img" src="{% static 'password.png' %}">
+                                    </div>
+                                    {% if error %}
+                                        <span style="color: red;">{{ error }}</span>
+                                    {% endif %}
+                                </div>
+                                <a href="{% url 'password_reset' %}">
+                                    <p id="fg">Forgot password ?</p>
+                                </a>
+                                {% comment %} <a href="sign-up.html">
+                                </a> {% endcomment %}
+                                <button type="submit" class="btn" id="login">LOGIN</button>
+                            </form>
+                            <div class="signup-text">
+                                <p class="d-inline">Don't have an account?</p>
+                                <a href="{% url 'regis' %}">
+                                    <p class="d-inline signup-color">SIGN UP</p>
+                                </a>
+                            </div>
+                            <img src="{% static 'or.png' %}" class="or">
+                            <button type="button" class="btn" id="facebookLogin">
+                                <img src="{% static 'facebook.png' %}" class="fb-img"><p class="facebook">Log in with Facebook</p></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mobile>
+    </body>
+
+{% endblock %}

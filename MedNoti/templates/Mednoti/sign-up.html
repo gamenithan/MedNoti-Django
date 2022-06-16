@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+    <body>
+        <mobile>
+            <div class='mobile-container'>
+                <div class="container">
+                    <form action="{% url 'sign' %}" method="POST" accept-charset="utf-8">
+                    {% csrf_token %}
+                        <a href="{% url 'login' %}"><img src="{% static 'back70.png' %}" class="back"></a>
+                        <h3 class="cr-profile">SIGN UP</h3>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="Inputdate">Username</label>
+                                    <input type="text" id="Inputuser-signup" class="form-control" placeholder="Enter your User name" name="username" required> 
+                                    <img class="user-img" src="{% static 'user.png' %}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="Inputemail">E-mail</label>
+                                    <input type="email" id="Inputemail" class="form-control" placeholder="Enter E-mail address" name="email" required>
+                                    <img class="email-img" src="{% static 'email.png' %}">
+                                </div>
+                            </div>
+                            {% comment %} <div class="col-12">
+                                <div class="form-group">
+                                    <label for="Inputnumber">Mobile number</label>
+                                    <input type="text" id="Inputnumber" class="form-control" placeholder="Enter your mobile number" name="phone" >
+                                    <img class="phone-img" src="{% static 'smartphone-call.png' %}">
+                                </div>
+                            </div> {% endcomment %}
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="Inputpassword">Password</label>
+                                    <input type="password" id="Inputpassword-signup" class="form-control" placeholder="8-10 Character minimum" name="password" required>
+                                    <img class="password-img" src="{% static 'password.png' %}">
+                                </div>
+                            </div>
+                            <div class="col-12 confirm">
+                                <div class="form-group">
+                                    <label for="Inputpassword">Confirm Password</label>
+                                    <input type="password" id="Inputpassword-signup" class="form-control" placeholder="Confirm your password" name="password2" required>
+                                    <img class="password-img" src="{% static 'password.png' %}">
+                                    {% if error %}
+                                        <span style="color: red;">{{ error }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <a href="createprofile.html">
+                                <button type="submit" class="btn" id="btn-cr-signup">CREATE ACCOUNT</button>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+        </mobile>
+    </body>
+    {% endblock %}

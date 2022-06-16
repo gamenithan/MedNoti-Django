@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Mitr&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+
+    <style>
+        body {
+            padding: 1em;
+            background: #666;
+            font-family: 'Mitr', sans-serif;
+        }
+
+        mobile {
+            display: flex;
+            flex-flow: column nowrap;
+            background: white;
+            margin: auto;
+            width: 414px;
+            height: 735px;
+            box-shadow: 0px 12px 24px #0004;
+        }
+
+        .mobile-container {
+            height: 100%;
+            overflow: auto;
+        }
+
+        #nav-bar {
+            background-image: linear-gradient(to bottom, #12D3CF, #67EACA);
+            height: 60px;
+        }
+
+        .back-main {
+            width: 25px;
+            display: inline-block;
+            margin-left: 15px;
+            margin-top: 20px;
+        }
+
+        .menu-main {
+            width: 25px;
+            display: inline-block;
+            margin-left: 315px;
+            margin-top: 20px;
+        }
+
+
+        /* createprofile */
+
+        .back {
+            margin-top: 20px;
+            width: 25px;
+        }
+
+        .cr-profile {
+            margin: 20 0 30 0px;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        label {
+            color: #12D3CF;
+        }
+
+        input {
+            color: #707070;
+            text-align: center;
+        }
+
+        .user-img,
+        .user1-img,
+        .gift-img,
+        .drugs-img,
+        .fork-img {
+            width: 37px;
+            position: absolute;
+            margin-left: 15px;
+            margin-top: -38px;
+        }
+
+        #Inputfirstname,
+        #Inputlastname,
+        #Inputage,
+        #Inputsex {
+            width: 150px;
+            margin-left: 20px;
+            border-radius: 1rem;
+            position: relative;
+        }
+
+        #Inputdate,
+        #Inputdisease,
+        #Inputallergy {
+            width: 355px;
+            margin-left: 20px;
+            border-radius: 1rem;
+        }
+
+        #Inputimage {
+            width: 300px;
+            margin: 0 0 30 20px;
+        }
+
+        #btn-cr-profile {
+            font-weight: 400;
+            margin-left: 33px;
+            width: 350px;
+            height: 40px;
+            border-radius: 20px;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            background-image: linear-gradient(to right, #12D3CF, #67EACA)
+        }
+
+
+        /* profile */
+
+        .box {
+            margin: 0;
+            width: 414px;
+            height: 330px;
+            position: relative;
+            background-image: linear-gradient(to bottom, #12D3CF, #67EACA);
+        }
+
+        .back-profile,
+        .menu {
+            margin-top: 20px;
+            width: 25px;
+            margin-top: -310px;
+        }
+
+        .profile-pic {
+            height: 130px;
+            background-color: white;
+            position: absolute;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: -250px;
+            left: 0;
+            right: 0;
+        }
+
+        .username {
+            color: white;
+            position: absolute;
+            margin-top: -110px;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+        }
+
+        .box-wite {
+            position: absolute;
+            width: 400px;
+            height: 405px;
+            margin-top: -60px;
+            border-radius: 5%;
+            background-color: white;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+        }
+
+        .data-user {
+            color: #12D3CF;
+            margin-top: 30px;
+        }
+
+        .data-user2 {
+            color: #5a5a5a;
+            margin-top: 30px;
+        }
+
+        #btn-profile {
+            font-weight: 400;
+            margin: auto;
+            display: block;
+            width: 250px;
+            height: 40px;
+            margin-top: 40px;
+            border-radius: 20px;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            background-image: linear-gradient(to right, #12D3CF, #67EACA)
+        }
+
+
+        /* Account */
+
+        .row-one {
+            margin-top: 3%;
+        }
+
+        #user-circle {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background-color: plum;
+        }
+
+        .back-menu {
+            width: 30px;
+        }
+
+        .middle-text {
+            margin-top: 25px;
+        }
+
+        .middle-text-h6 {
+            margin-top: 27px;
+        }
+
+        .middle-img {
+            margin-top: 24px;
+        }
+
+        #hr {
+            border: 0.2px solid #707070;
+            margin-top: 10px;
+        }
+
+        .img-account {
+            width: 30px;
+            margin: 15 20 10 20px;
+        }
+
+
+        /* login */
+
+        #logo {
+            width: 350px;
+            position: absolute;
+            margin-top: -250px;
+            margin-left: 15px;
+        }
+
+        .signin-text {
+            text-align: center;
+            margin: 20 0 40 0px;
+        }
+
+        #Inputuser,
+        #Inputpassword {
+            width: 280px;
+            height: 45px;
+            margin-left: 20px;
+            border-radius: 2rem;
+            color: #707070;
+        }
+
+        .user-login-img,
+        .password-login-img {
+            width: 45px;
+            position: absolute;
+            margin-left: 15px;
+            margin-top: -45px;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+
+        #fg {
+            font-weight: 600;
+            color: #12D3CF;
+            margin-left: 11em;
+            margin-top: -12;
+        }
+
+        #fb {
+            background-color: #3b5998;
+        }
+
+        #login {
+            font-weight: 400;
+            margin: auto;
+            display: block;
+            width: 280px;
+            height: 40px;
+            margin-top: 30px;
+            border-radius: 20px;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            background-image: linear-gradient(to right, #12D3CF, #67EACA)
+        }
+
+        #dh {
+            text-align: center;
+            color: #707070;
+            margin-bottom: -8px;
+        }
+
+        .signup-text {
+            text-align: center;
+            color: #707070;
+        }
+
+        .signup-color {
+            color: #12D3CF;
+        }
+
+        .or {
+            width: 300px;
+            margin: auto;
+            display: block;
+        }
+
+        #facebookLogin {
+            background-color: #3b5998;
+            margin: auto;
+            display: block;
+            border-radius: 20px;
+            color: white;
+            font-size: 15px;
+            text-align: center;
+            width: 280px;
+            height: 40px;
+        }
+
+        .fb-img {
+            width: 37px;
+            height: 30px;
+            position: absolute;
+            margin-left: -100px;
+            margin-top: -3px;
+        }
+
+        .facebook {
+            margin-left: 40px;
+        }
+
+        button.set {
+            width: 100%;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .box-wite-login {
+            position: absolute;
+            width: 400px;
+            height: 405px;
+            margin-top: -100px;
+            border-radius: 5%;
+            background-color: white;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+        }
+
+
+        /* sign-up */
+
+        .user-img,
+        .email-img,
+        .phone-img,
+        .password-img {
+            width: 37px;
+            position: absolute;
+            margin-left: 15px;
+            margin-top: -38px;
+        }
+
+        #Inputuser-signup,
+        #Inputemail,
+        #Inputnumber,
+        #Inputpassword-signup {
+            width: 355px;
+            margin-left: 20px;
+            border-radius: 1rem;
+        }
+
+        .confirm {
+            margin-bottom: 20px;
+        }
+
+        #btn-cr-signup {
+            font-weight: 400;
+            margin-left: 32px;
+            width: 350px;
+            height: 40px;
+            border-radius: 20px;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            background-image: linear-gradient(to right, #12D3CF, #67EACA)
+        }
+    </style>
+    {% block content %}
+
+    {% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script>
+        function goBack() {
+        window.history.back();
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    
+</head>
+</html>

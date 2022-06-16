@@ -1,0 +1,106 @@
+{% extends "base2.html" %}
+{% block content %}
+{% load static %}
+    <body>
+        <mobile>
+            <div class='mobile-container'>
+                <nav id="nav-bar">
+                    <a onclick="goBack()"><img src="{% static 'back.png' %}" class="back-main"></a>
+                    <a href="{% url 'menu' %}"><img src="{% static 'menu.png' %}" class="menu-main"></a>
+                </nav>
+                <br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label style="margin-left: 15px;margin-top: 10px;color: #000;">{{med.name}}</label>
+                        </div>
+                    </div>
+                    <form method="POST" action="{% url 'home2' med.id %}" accept-charset="utf-8">
+                    {% csrf_token %}
+                    <div style="margin-top: 20px;color: #000;">
+                    </div>
+                    {% if med.freq1 != '' %}
+                    <div class="row" style="margin-left: 10px;">
+                        <div class="col-sm-2">
+                            <label style="color: #000;">{{med.freq1}}</label>
+                        </div>
+                        <div class="col-sm-5">
+                            <label style="color: #000;">{{med.when}}</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label style="color: #000;">{{med.hmt}} เม็ด</label>
+                        </div>
+                        <div class="col-sm-2" style="margin-top: 6px;">
+                            <div>
+                                {{form.check1}}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if med.freq2 != '' %}
+                    <div class="row" style="margin-left: 10px;">
+                        <div class="col-sm-2">
+                            <label style="color: #000;">{{med.freq2}}</label>
+                        </div>
+                        <div class="col-sm-5">
+                            <label style="color: #000;">{{med.when}}</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label style="color: #000;">{{med.hmt}} เม็ด</label>
+                        </div>
+                        <div class="col-sm-2" style="margin-top: 6px;">
+                            <div >
+                                {{form.check2}}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if med.freq3 != '' %}
+                    <div class="row" style="margin-left: 10px;color: #000;">
+                        <div class="col-sm-2" style="color: #000;">
+                            <label style="color: #000;">{{med.freq3}}</label>
+                        </div>
+                        <div class="col-sm-5">
+                            <label style="color: #000;">{{med.when}}</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label style="color: #000;">{{med.hmt}} เม็ด</label>
+                        </div>
+                        <div class="col-sm-2" style="margin-top: 6px;">
+                            <div >
+                                {{form.check3}}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if med.freq4 != '' %}
+                    <div class="row" style="margin-left: 10px;color: #000;">
+                        <div class="col-sm-2" style="color: #000;">
+                            <label style="color: #000;">{{med.freq4}}</label>
+                        </div>
+                        <div class="col-sm-5">
+                            <label style="color: #000;">{{med.when}}</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label style="color: #000;">{{med.hmt}} เม็ด</label>
+                        </div>
+                        <div class="col-sm-2" style="margin-top: 6px;">
+                            <div >
+                                {{form.check4}}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <button type="sybmit" class="btn" id="btn-cr-profile" style="width: 100px;margin-left: 260px;height: 35px;font-size: 15px;">ยืนยัน</button>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </mobile>
+    </body>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base2.html" %}
+{% block content %}
+{% load static %}
+    <body>
+        <mobile>
+            <div class='mobile-container'>
+                <div id="create-profile">
+                    <div class="box"></div>
+                    <div class="container">
+                        <div class="row justify-content-between">
+                            <div class="col-4">
+                                 <a onclick="goBack()"><img src="{% static 'back.png' %}" class="back-profile"></a>
+                            </div>
+                            <div class="col-2">
+                                <a href="{% url 'menu' %}"><img src="{% static 'menu.png' %}" class="menu"></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <img class="col-5 rounded-circle profile-pic" src="{{nei.image_url.url}}">
+                        </div>
+                        <div class="row">
+                            <h4 class="col-12 username" style="text-align: center;">{{nei.first_name}}</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-11 box-wite">
+                                <div class="row row row-cols-2 firstname">
+                                    <div class="col">
+                                        <h6 class="data-user">ชื่อ - นามสกุล</h6>
+                                        <h6 class="data-user">อายุ</h6>
+                                        <h6 class="data-user">เพศ</h6>
+                                        <h6 class="data-user">โรคประจำตัว</h6>
+                                        <h6 class="data-user">อาหารหรือยาที่แพ้</h6>
+                                    </div>
+                                    <div class="col">
+                                        <h6 class="data-user2">{{nei.first_name}} {{nei.last_name}}</h6>
+                                        <h6 class="data-user2">{{nei.age}}</h6>
+                                        <h6 class="data-user2">{{nei.sex}}</h6>
+                                        <h6 class="data-user2">{{nei.disease}}</h6>
+                                        <h6 class="data-user2">{{nei.allergy}}</h6>
+                                    </div>
+                                    <a href="{% url 'edit_other' nei.id %}" type="button" class="btn" id="btn-profile">แก้ไขโปรไฟล์</a><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </mobile>
+    </body>
+
+{% endblock %}

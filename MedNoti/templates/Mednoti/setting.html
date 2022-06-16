@@ -1,0 +1,39 @@
+{% extends "base2.html" %}
+{% block content %}
+{% load static %}
+    <body>
+        <mobile>
+            <div class='mobile-container'>
+                <nav id="nav-bar">
+                    <a onclick="goBack()"><img src="{% static 'back.png' %}" class="back-main"></a>
+                    <h3 id="setting-text">การตั้งค่า</h3>
+                    <a href="{% url 'menu' %}"><img src="{% static 'menu.png' %}" class="menu-main"></a>
+                </nav>
+                <div class="container">
+                    <a href="{% url 'password_change' %}">
+                    <div class="row">
+                        <div class="col-10 middle-text-h6 text-body">
+                            <p class="pr-setting-text">เปลี่ยนรหัสผ่าน</p>
+                        </div>
+                        <div class="col middle-img">
+                            <img src="{% static 'back_right70.png' %}" class="back-menu">
+                        </div>
+                    </div>
+                    </a>
+                    <div id="hr"></div>
+                    <a href="{% url 'logout' %}">
+                    <div class="row">
+                        <div class="col-10 middle-text-h6 text-body">
+                            <p class="pr-setting-text">ออกจากระบบ</p>
+                        </div>
+                        <div class="col middle-img">
+                            <img src="{% static 'back_right70.png' %}" class="back-menu">
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </mobile>
+    </body>
+</head>
+{% endblock %}

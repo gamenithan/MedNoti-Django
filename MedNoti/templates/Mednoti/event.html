@@ -1,0 +1,51 @@
+{% extends "base2.html" %}
+{% block content %}
+{% load static %}
+    <body>
+        <mobile>
+            <div class='mobile-container'>
+                <nav id="nav-bar">
+                    <a onclick="goBack()"><img src="{% static 'back.png' %}" class="back-main"></a>
+                    <h3 id="event-text">กิจกรรม</h3>
+                    <a href="{% url 'menu' %}"><img src="{% static 'menu.png' %}" class="menu-main"></a>
+                </nav>
+                <br>
+                <div class="container">
+                <form method="POST" action="{% url 'event' %}" accept-charset="utf-8">
+                {% csrf_token %}
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="form-group">
+                                <label>วันที่ไปทำธุระ</label>
+                                <input type="date" id="Inputdate-event" class="form-control" name='date' required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="form-group">
+                                <label>กิจกรรม</label>
+                                <input type="text" id="Inputdate-event" class="form-control" name='activity' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn" id="btn-event">SUBMIT</button>
+                </div>
+                </form>
+                {% for event in events %}
+                <br>
+                <div class="card w-75" style="margin: auto; display: block;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{event.date}}</h5>
+                        <p class="card-text">{{event.activity}}</p>
+                        <a href="{% url 'delete-event' event.id %}" onclick=""><img src="{% static 'bin.png' %}" class="delete-event"></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+        </mobile>
+    </body>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+    <body>
+        <mobile>
+            <div class='mobile-container'>
+                <div id="create-profile"></div>
+                <form method="POST" action="{% url 'createprofile' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                    <div class="container">
+                        <a href="{% url 'login' %}"><img src="{% static 'back70.png' %}" class="back"></a>
+                        <h1 class="cr-profile">CREATE PROFILE</h1>
+                        <div class="row row-cols-2 firstname">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="Inputfirstname">Firstname</label>
+                                    <input type="text" class="form-control" id="Inputfirstname" name='first_name'>
+                                    <img class="user-img" src="{% static 'user.png' %}">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="Inputlastname">Lastname</label>
+                                    <input type="text" class="form-control" id="Inputlastname" name='last_name'>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="Inputage">Age</label>
+                                    <input type="text" class="form-control" id="Inputage" name='age'>
+                                    <img class="user1-img" src="{% static 'user1.png' %}">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="Inputsex">Sex</label>
+                                    <select id="Inputsex" class="form-control" name='sex'>
+                                      <option value="Male">Male</option>
+                                      <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="Inputdate">Date of Birth</label>
+                                    <input type="date" id="Inputdate" class="form-control" name='date_of_birth'>
+                                    <img class="gift-img" src="{% static 'gift.png' %}">
+                                    {% comment %} {{ form }} {% endcomment %}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="Inputdisease">Congenital disease</label>
+                                    <input type="text" id="Inputdisease" class="form-control" name='disease'>
+                                    <img class="drugs-img" src="{% static 'drugs.png' %}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="Inputallergy">Food allergy / Drug allergy</label>
+                                    <input type="text" id="Inputallergy" class="form-control" name='allergy'>
+                                    <img class="fork-img" src="{% static 'fork.png' %}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="Inputimage">Choose image</label>
+                                    <input type="file" id="Inputimage" class="form-control-file" name='image_url'>
+                                </div>
+                            </div>
+                            <button  type="submit" class="btn" id="btn-cr-profile">SUBMIT</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </mobile>
+    </body>
+{% endblock %}

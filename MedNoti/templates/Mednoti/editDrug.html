@@ -1,0 +1,113 @@
+{% extends "base2.html" %}
+{% block content %}
+{% load static %}
+    <body>
+        <mobile>
+            <div class='mobile-container'>
+                <nav id="nav-bar">
+                    <a onclick="goBack()"><img src="{% static 'back.png' %}" class="back-main"></a>
+                    <h3 id="add-drug">แก้ไขรายการยา</h3>
+                    
+                </nav>
+                <div class="container">
+                    <br>
+                    <form method="POST" action="{% url 'editdrug' med.id %}" accept-charset="utf-8">
+                    {% csrf_token %}
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-3 col-form-label">ชื่อยา</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="name-add" name="name" value="{{ med.name }}" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="inputCategory">ประเภทยา</label>
+                            <select class="col-sm-5" id="inputCategory" class="form-control" name="med_type" required>
+                                <option selected value='{{med.med_type}}'>Choose</option>
+                                <option value="ยาแผนโบราณ">ยาแผนโบราณ</option>
+                                <option value="ยาแผนปัจจุบัน">ยาแผนปัจจุบัน</option>
+                                <option value="ยาสามัญประจำบ้าน">ยาสามัญประจำบ้าน</option>
+                                <option value="ยาสมุนไพร">ยาสมุนไพร</option>
+                                <option value="ยาบำรุงร่างกาย">ยาบำรุงร่างกาย</option>
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="inputType">ชนิดยา</label>
+                            <select class="col-sm-5" id="inputType" class="form-control" name="cate" required>
+                                <option selected value='{{med.cate}'>Choose</option>
+                                <option value="ยาเม็ด">ยาเม็ด</option>
+                                <option value="ยาน้ำ">ยาน้ำ</option>
+                                <option value="แคปซูล">แคปซูล</option>
+                                <option value="ยาพ่น">ยาพ่น</option>
+                                <option value="ยาหยอด">ยาหยอด</option>
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputstart" class="col-sm-5 col-form-label">วันที่เริ่มรับประทานยา</label>
+                            <div class="col-sm-7">
+                                <input type="date" class="form-control" id="date-add" name="take_start" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputnum" class="col-sm-6 col-form-label">จำนวนยาที่ต้องรับประทาน</label>
+                            <div class="col-sm-3">
+                                <input type="number" class="form-control" id="num-add" name="unit_eat" value="{{med.unit_eat}}"required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="เช้า" style="margin-right: 5px;" name="freq1">เช้า</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="กลางวัน" style="margin-right: 5px;" name="freq2">กลางวัน</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" style="margin-right: -20px;">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="เย็น"  style="margin-right: 5px;" name="freq3">เย็น</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="ก่อนนอน" style="margin-right: 2px;" name="freq4">ก่อนนอน</label>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="inputTime">ช่วงเวลา</label>
+                            <select class="col-sm-5 js-my-select" id="inputTime" class="form-control" name="when" required>
+                                <option selected value={{med.when}}>Choose</option>
+                                <option value="ก่อนอาหาร 15 นาที">ก่อนอาหาร 15 นาที</option>
+                                <option value="รับประทานทันที">รับประทานทันที</option>
+                                <option value="หลังอาหาร 15 นาที">หลังอาหาร 15 นาที</option>
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputnum" class="col-sm-3 col-form-label">ครั้งละ</label>
+                            <div class="col-sm-3">
+                                <input type="number" class="form-control" id="num-add" name="hmt" value="{{med.hmt}}" required>
+                            </div>
+                            <label class="col-sm-3 col-form-label">เม็ด</label>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-3 col-form-label">ชื่อผู้ทาน</label>
+                            <div class="col-sm-9">
+                                <select class="col-sm-9" id="chooseName" class="form-control" style="height: 38px;color: #707070;font-size: 15px;" name="who" required>
+                                    <option value="{{user.first_name}}" >{{user.first_name}}</option>
+                                {% for n in neighbor %}
+                                    <option value="{{n.first_name}}" >{{n.first_name}}</option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>    
+                            <button type="submit" class="btn" id="btn-adddrug">SUBMIT</button>
+                        </div>
+                        </div>    
+                    </form>
+                </div>
+        </mobile>
+    </body>
+</head>
+{% endblock %}

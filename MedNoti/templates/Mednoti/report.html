@@ -1,0 +1,97 @@
+{% extends "base2.html" %}
+{% block content %}
+{% load static %}
+
+<body>
+    <mobile>
+        <div class='mobile-container'>
+            <nav id="nav-bar">
+                <a onclick="goBack()"><img src="{% static 'back.png' %}" class="back-main"></a>
+                <h3 id="report-text">การประเมินผล</h3>
+                <a href="{% url 'menu' %}"><img src="{% static 'menu.png' %}" class="menu-main"></a>
+            </nav>
+            <br>
+            <div class="container">
+                <div class="row row-cols-2 firstname">
+                    <div class="col">
+                    <form method="POST" action="{% url 'report' %}" accept-charset="utf-8">
+                    {% csrf_token %}
+                        <div class="form-group">
+                            <label>ปี</label>
+                            <select id="Year" class="form-control" name='year'>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>เดือน</label>
+                            <select id="Mount" class="form-control" name='month'>
+                                <option value="1">มกราคม</option>
+                                <option value="2">กุมภาพันธ์</option>
+                                <option value="3">มีนาคม</option>
+                                <option value="4">เมษายน</option>
+                                <option value="5">พฤษภาคม</option>
+                                <option value="6">มิถุนายน</option>
+                                <option value="7">กรกฎาคม</option>
+                                <option value="8">สิงหาคม</option>
+                                <option value="9">กันยายน</option>
+                                <option value="10">ตุลาคม</option>
+                                <option value="11">พฤศจิกายน</option>
+                                <option value="12">ธันวาคม</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                    <button type="submit" class="btn" id="btn-event">SUBMIT</button>
+                    </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <canvas id="bar-chart" width="200" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </mobile>
+</body>
+
+<script>
+    var ctx = document.getElementById("bar-chart").getContext("2d");
+    var colorHex = ["#D8EDFF", "#D2FED8", "#FFFCD6", "#FEDAFF"];
+    var myNewChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["สัปดาห์ที่ 1", "สัปดาห์ที่ 2", "สัปดาห์ที่ 3", "สัปดาห์ที่ 4"],
+            datasets: [{
+                data: [{{week1}}, {{week2}}, {{week3}}, {{week4}}],
+                borderColor: colorHex,
+                backgroundColor: ["rgba(216, 237, 255, 0.6)", "rgba(210, 254, 216, 0.6)", "rgba(255, 252, 214, 0.6)", "rgba(254, 218, 255, 0.3)"],
+                hoverBackgroundColor: ["#D8EDFF", "#D2FED8", "#FFFCD6", "#FEDAFF"]
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    stacked: true
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            },
+            legend: {
+                display: false
+            },
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 30,
+                    bottom: 0
+                }
+            }
+        }
+    })
+</script>
+{% endblock %}

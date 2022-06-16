@@ -1,0 +1,46 @@
+{% extends "base2.html" %}
+{% block content %}
+{% load static %}
+    <body>
+        <mobile>
+            <div class='mobile-container'>
+                <nav id="nav-bar">
+                    <a onclick="goBack()"><img src="{% static 'back.png' %}" class="back-main"></a>
+                    <h3 id="add-drug">ข้อมูลบุคคลอื่น</h3>
+                    <a href="{% url 'menu' %}"><img src="{% static 'menu.png' %}" class="menu-main"></a>
+                </nav>
+                <div class="container">
+                    <div class="row">
+                        <a class="btn" id="btn-add" href="{% url 'addother' %}"><p class="pluss">+</p></a>
+                    </div>
+                    <div class="row">
+                    {% for nei in neis %}
+                    <div class="col-sm-6">
+                    <a href="{% url 'myother' nei.id %}">
+                        <div class="card" id="card-other">
+                            <div class="card-body">
+                                <img src="{{nei.image_url.url}}" class="circle">
+                                <br>
+                                <p class="card-title text-center text-body">{{nei.first_name}}</p>
+                            </div>
+                        </div>
+                    </a>
+                    </div>
+                    {% comment %} </div>
+                        <div class="col-6">
+                            <div id="other" class="card mb-6">
+                                <a href="{% url 'myother' nei.id %}">
+                                <div class="row">
+                                    <div class="col-7 rounded-circle profile-other mt-3"></div>
+                                    <p id="name-other" class="card-title mt-3 text-body">{{nei.first_name}}</p>
+                                </div>
+                                </a>
+                            </div>
+                        </div> {% endcomment %}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </mobile>
+    </body>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "base2.html" %}
+{% block content %}
+{% load static %}
+    <body>
+        <mobile>
+            <div class='mobile-container'>
+                <nav id="nav-bar">
+                    <a onclick="goBack()"><img src="{% static 'back.png' %}" class="back-main"></a>
+                    <h4 id="history-text">ประวัติการทานยา</h4>
+                    <a href="{% url 'menu' %}"><img src="{% static 'menu.png' %}" class="menu-main"></a>
+                </nav>
+                <br>
+                <div class="container">
+                <form method="POST" action="{% url 'history' %}" accept-charset="utf-8">
+                {% csrf_token %}
+                    <div class="row">
+                        <div class="col-11">
+                            <div class="form-group">
+                                <label>วันที่</label>
+                                <input type="date" id="Inputdate-history" class="form-control" name='date'>
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn" id="btn-event">SUBMIT</button>
+                </div>
+                <br>
+                    {% for sch in schs %}
+                    <div class="card mb-3" style="max-width: 25rem; margin: auto;
+                     display: block;">
+                        <div class="card-header bg-transparent">{{sch.date}}</div>
+                        <div class="card-body text-success">
+                            <p class="card-title text-dark">{{sch.medicine_id.name}}</p>
+                            <p class="card-text text-dark" id="pr-list">
+                                คงเหลือ {{sch.count}} เม็ด
+                                <div id="list-history" class="row">
+                                {% if sch.check1 == True and sch.medicine_id.freq1 != ''%}
+                                    <label class="col-2 text-dark" id="pr-list-history"><p>{{sch.medicine_id.freq1}}</p></label>
+                                    <label class="col-4 text-dark" id="pr-list-history"><p>{{sch.medicine_id.when}}</p></label>
+                                    <label class="col-2 text-dark" id="pr-list-history"><p>{{sch.medicine_id.hmt}} เม็ด</p></label>
+                                {% elif sch.check1 == False and sch.medicine_id.freq1 != ''%}
+                                    <label class="col-2 text-dark" id="pr-list-history"><p style="color: red;">{{sch.medicine_id.freq1}}</p></label>
+                                    <label class="col-4 text-dark" id="pr-list-history"><p style="color: red;">{{sch.medicine_id.when}}</p></label>
+                                    <label class="col-2 text-dark" id="pr-list-history"><p style="color: red;">{{sch.medicine_id.hmt}} เม็ด</p></label>
+                                {% endif %}
+                                {% if sch.check2 == True and sch.medicine_id.freq2 != ''%}
+                                    <label class="col-2 text-dark" id="pr-list-history"><p>{{sch.medicine_id.freq2}}</p></label>
+                                    <label class="col-4 text-dark" id="pr-list-history"><p>{{sch.medicine_id.when}}</p></label>
+                                    <label class="col-2 text-dark" id="pr-list-history"><p>{{sch.medicine_id.hmt}} เม็ด</p></label>
+                                {% elif sch.check2 == False and sch.medicine_id.freq2 != ''%}
+                                    <label class="col-2 text-dark" id="pr-list-history"><p style="color: red;">{{sch.medicine_id.freq2}}</p></label>
+                                    <label class="col-4 text-dark" id="pr-list-history"><p style="color: red;">{{sch.medicine_id.when}}</p></label>
+                                    <label class="col-2 text-dark" id="pr-list-history"><p style="color: red;">{{sch.medicine_id.hmt}} เม็ด</p></label>
+                                {% endif %}
+                                {% if sch.check3 == True and sch.medicine_id.freq3 != ''%}
+                                    <label class="col-2 text-dark" id="pr-list-history"><p>{{sch.medicine_id.freq3}}</p></label>
+                                    <label class="col-4 text-dark" id="pr-list-history"><p>{{sch.medicine_id.when}}</p></label>
+                                    <label class="col-2 text-dark" id="pr-list-history"><p>{{sch.medicine_id.hmt}} เม็ด</p></label>
+                                {% elif sch.check3 == False and sch.medicine_id.freq3 != ''%}
+                                    <label class="col-2 text-dark" id="pr-list-history"><p style="color: red;">{{sch.medicine_id.freq3}}</p></label>
+                                    <label class="col-4 text-dark" id="pr-list-history"><p style="color: red;">{{sch.medicine_id.when}}</p></label>
+                                    <label class="col-2 text-dark" id="pr-list-history"><p style="color: red;">{{sch.medicine_id.hmt}} เม็ด</p></label>
+                                {% endif %}
+                                {% if sch.check4 == True and sch.medicine_id.freq4 != ''%}
+                                    <label class="col-2 text-dark" id="pr-list-history"><p>{{sch.medicine_id.freq4}}</p></label>
+                                    <label class="col-4 text-dark" id="pr-list-history"><p>{{sch.medicine_id.when}}</p></label>
+                                    <label class="col-2 text-dark" id="pr-list-history"><p>{{sch.medicine_id.hmt}} เม็ด</p></label>
+                                {% elif sch.check4 == False and sch.medicine_id.freq4 != ''%}
+                                    <label class="col-2 text-dark" id="pr-list-history"><p style="color: red;">{{sch.medicine_id.freq4}}</p></label>
+                                    <label class="col-4 text-dark" id="pr-list-history"><p style="color: red;">{{sch.medicine_id.when}}</p></label>
+                                    <label class="col-2 text-dark" id="pr-list-history"><p style="color: red;">{{sch.medicine_id.hmt}} เม็ด</p></label>
+                                {% endif %}
+                                </div>
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent"></div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </form>
+
+            </div>
+        </mobile>
+    </body>
+{% endblock %}
